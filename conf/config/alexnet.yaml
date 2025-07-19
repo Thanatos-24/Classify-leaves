@@ -1,0 +1,30 @@
+name: alexnet
+
+ckpt: 
+
+Datasetconfig:
+  image_root: /home/wangzhou/leaves/data/train
+  image_label: /home/wangzhou/leaves/data/train.csv
+  test_image_root: /home/wangzhou/leaves/data/test
+  mapping_path: /home/wangzhou/leaves/label_mapping.json
+  batch_size: ${config.train.batch_size}
+  num_workers: 4
+  epochs: ${config.train.epochs}
+  sigmaX: 10
+
+output_dir: ./logs/${config.name}
+
+# resnet18:
+#   input_channels: 3
+#   num_channels: 64
+#   num_classes: 176
+#   num_residuals: [2,2,2,2]
+#   learning_rate: ${config.train.learning_rate}
+
+trainer:
+  benchmark: True
+  devices: [1]
+  accelerator: "auto"
+  check_val_every_n_epoch: 5
+
+  
